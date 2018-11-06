@@ -5,14 +5,18 @@ import java.net.*;
 import java.io.*;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TicTacToeClient extends Application implements TicTacToeConstants{
@@ -58,20 +62,34 @@ public class TicTacToeClient extends Application implements TicTacToeConstants{
 		for(int i = 0; i < 3; i++)
 			for(int j = 0; j < 3; j++)
 				pane.add(cell[i][j] = new Cell(i, j), j, i);
+		Text textHost = new Text("Host:");
 		
+		TextField tfHost = new TextField();
+		tfHost.setPrefColumnCount(18);
+		tfHost.setAlignment(Pos.BOTTOM_LEFT);
+		
+		Button btVerifyHost = new Button("OK");
+		btVerifyHost.setOnAction(e -> {
+			host = tfHost.getText().trim();
+			try {
+				connectToServer();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		});
+		pane.add(textHost, 0, 3);
+		pane.add(tfHost, 1, 3);
+		pane.add(btVerifyHost, 2, 3);
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(lblTitle);
 		borderPane.setCenter(pane);
 		borderPane.setBottom(lblStatus);
 		
 		// Create a scene and place it in the stage
-		Scene scene = new Scene(borderPane, 320, 350);
+		Scene scene = new Scene(borderPane, 320, 380);
 		primaryStage.setTitle("TicTacToeClient");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		
-		// Connect to the server
-		connectToServer();
 	}
 	
 	private void connectToServer() {
