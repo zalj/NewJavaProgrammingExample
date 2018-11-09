@@ -73,7 +73,7 @@ public class ClockPane extends Pane {
 		paintClock();
 	}
 
-	private void setCurrentTime() {
+	public void setCurrentTime() {
 		Calendar calendar = new GregorianCalendar();
 		
 		this.hour = calendar.get(Calendar.HOUR_OF_DAY);
