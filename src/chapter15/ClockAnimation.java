@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -15,6 +16,7 @@ public class ClockAnimation extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		ClockPane clock = new ClockPane();
+		clock.setPadding(new Insets(15));
 		
 		EventHandler<ActionEvent> eventHandler = e -> {
 			clock.setCurrentTime();
