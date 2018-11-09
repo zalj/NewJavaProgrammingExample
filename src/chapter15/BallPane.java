@@ -9,9 +9,9 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class BallPane extends Pane {
-	public final int radius = 20;
-	private int x = radius, y = radius;
-	private int dx = 1, dy = 1;
+	public final double radius = 20;
+	private double x = radius, y = radius;
+	private double dx = 1, dy = 1;
 	private Circle circle = new Circle(x, y, radius);
 	private Timeline animation;
 	
@@ -19,7 +19,8 @@ public class BallPane extends Pane {
 		circle.setFill(Color.GREEN);
 		getChildren().add(circle);
 		
-		animation = new Timeline(new KeyFrame(Duration.millis(50), e -> moveBall()));
+		animation = new Timeline(
+		  new KeyFrame(Duration.millis(50), e -> moveBall()));
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.play();
 	}
@@ -37,7 +38,7 @@ public class BallPane extends Pane {
 	}
 	
 	public void decreaseSpeed() {
-		animation.setRate(animation.getRate() > 0 ? animation.getRate() - 0.1 : animation.getRate());
+		animation.setRate(animation.getRate() > 0 ? animation.getRate() - 0.1 : 0);
 	}
 	
 	public DoubleProperty rateProperty() {
@@ -55,6 +56,6 @@ public class BallPane extends Pane {
 		x += dx;
 		y += dy;
 		circle.setCenterX(x);
-		circle.setCenterX(y);
+		circle.setCenterY(y);
 	}
 }
