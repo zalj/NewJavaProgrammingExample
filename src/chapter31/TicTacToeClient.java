@@ -95,7 +95,7 @@ public class TicTacToeClient extends Application implements TicTacToeConstants{
 	private void connectToServer() {
 		try {
 			// Create a socket to connect to the server
-			Socket socket = new Socket(host, 8001);
+			Socket socket = new Socket(host, 4443);
 			
 			// Create an input stream to receive data from the server
 			fromServer = new DataInputStream(socket.getInputStream());
