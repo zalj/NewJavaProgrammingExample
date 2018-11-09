@@ -18,9 +18,9 @@ public final class PaneMethod {
 		Label lblStatus = new Label();
 		pane.setBottom(lblStatus);
 		
-		pane.setOnMouseMoved(e -> {
-			lblStatus.setText("X: " + e.getX() + " Y: " + e.getY());
-		});
+		pane.setOnMouseMoved(e -> lblStatus.setText("X: " + e.getX() + " Y: " + e.getY()));
+		
+		pane.setOnMouseExited(e -> lblStatus.setText(""));
 	}
 	
 	/**
