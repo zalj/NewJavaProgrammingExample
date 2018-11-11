@@ -17,6 +17,11 @@ public class ButtonDemo extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		Scene scene = new Scene(getPane(), 450, 200);
+		PaneMethod.addSceneInStage(primaryStage, scene, "ButtonDemo");
+	}
+
+	protected BorderPane getPane() {
 		HBox paneForButton = new HBox(20);
 		Button btLeft = new Button("Left",
 				new ImageView("https://www.easyicon.net/api/resizeApi.php?id=35662&size=128"));
@@ -36,10 +41,9 @@ public class ButtonDemo extends Application {
 		btLeft.setOnAction(e -> text.setX(text.getX() - 10));
 		btRight.setOnAction(e -> text.setX(text.getX() + 10));
 		
-		Scene scene = new Scene(pane, 450, 200);
-		PaneMethod.addSceneInStage(primaryStage, scene, "ButtonDemo");
+		return pane;
 	}
-
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
